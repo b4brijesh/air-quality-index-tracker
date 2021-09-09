@@ -1,8 +1,8 @@
 /* --- STATE --- */
 export interface AqiState {
   subscribing: boolean;
-  // aqiData?: Array<AqiSocketDataPoint & Pick<AqiSocketMessage, 'timestamp'>>;
-  cities?: Array<City>;
+  cities?: City[];
+  currentCityName?: string;
 }
 
 export interface City {

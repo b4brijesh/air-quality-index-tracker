@@ -39,6 +39,9 @@ const slice = createSlice({
         }
       }
     },
+    setCurrentCityName(state, action: PayloadAction<string>) {
+      state.currentCityName = action.payload;
+    },
   },
 });
 

@@ -10,7 +10,12 @@ export const selectCities = createSelector(
   state => state.cities,
 );
 
-export const selectSubscribingState = createSelector(
+export const selectSubscriptionState = createSelector(
   [selectSlice],
   state => state.subscribing,
+);
+
+export const selectCurrentCityName = createSelector(
+  [selectSlice],
+  state => state.currentCityName,
 );
