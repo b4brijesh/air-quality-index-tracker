@@ -26,6 +26,11 @@ export function LiveAqiTable({ cities }: LiveAqiTableProps) {
   const dispatch = useDispatch();
   const { actions } = useAqiSlice();
 
+  const timeElapsed = (city: City) =>
+    moment
+      .unix(city.aqiReadings[city.aqiReadings.length - 1].timestamp / 1000)
+      .fromNow();
+
   return (
     <Table bordered hover size="sm" className="text-center">
       <thead>
@@ -39,19 +44,12 @@ export function LiveAqiTable({ cities }: LiveAqiTableProps) {
         {cities.map(city => (
           <ColoredTableRow
             key={city.name}
-            color={getAqiStandards(city).toString()}
+            backgroundColor={getAqiStandards(city).toString()}
             onClick={() => dispatch(actions.setCurrentCityName(city.name))}
           >
             <td>{city.name}</td>
             <td>{getLatestAqi(city)}</td>
-            <td>
-              {moment
-                .unix(
-                  city.aqiReadings[city.aqiReadings.length - 1].timestamp /
-                    1000,
-                )
-                .fromNow()}
-            </td>
+            <td>{timeElapsed(city)}</td>
           </ColoredTableRow>
         ))}
       </tbody>
@@ -61,22 +59,12 @@ export function LiveAqiTable({ cities }: LiveAqiTableProps) {
 
 const ColoredTableRow = styled.tr`
   cursor: pointer;
-  ${props =>
-    props.color === AirQualityStandards.GOOD.toString() &&
-    `background: rgb(0, 176, 80);`}
-  ${props =>
-    props.color === AirQualityStandards.SATISFACTORY.toString() &&
-    `background: rgb(146, 208, 80);`}
-  ${props =>
-    props.color === AirQualityStandards.MODERATE.toString() &&
-    `background: rgb(255, 255, 0);`}
-  ${props =>
-    props.color === AirQualityStandards.POOR.toString() &&
-    `background: rgb(255, 153, 0);`}
-  ${props =>
-    props.color === AirQualityStandards.VERY_POOR.toString() &&
-    `background: rgb(255, 0, 0);`}
-  ${props =>
-    props.color === AirQualityStandards.SEVERE.toString() &&
-    `background: rgb(192, 0, 0);`}
+  background-color: ${({ backgroundColor: color }) =>
+    (color === AirQualityStandards.GOOD.toString() && `rgb(0, 176, 80)`) ||
+    (color === AirQualityStandards.SATISFACTORY.toString() &&
+      `rgb(146, 208, 80)`) ||
+    (color === AirQualityStandards.MODERATE.toString() && `rgb(255, 255, 0)`) ||
+    (color === AirQualityStandards.POOR.toString() && `rgb(255, 153, 0)`) ||
+    (color === AirQualityStandards.VERY_POOR.toString() && `rgb(255, 0, 0)`) ||
+    (color === AirQualityStandards.SEVERE.toString() && `rgb(192, 0, 0)`)};
 `;

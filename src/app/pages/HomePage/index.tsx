@@ -26,8 +26,6 @@ export function HomePage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // const selectedCity = cities?.find(city => city.name === currCityName);
-
   return (
     <>
       <Helmet>
@@ -52,7 +50,7 @@ export function HomePage() {
         {cities && (
           <>
             <div className="row" style={{ minHeight: '60vh' }}>
-              <div className="col-6">
+              <div className="col-6 align-middle">
                 <LiveAqiTable cities={cities} />
               </div>
               <div className="col-6 align-middle">
@@ -61,15 +59,13 @@ export function HomePage() {
             </div>
             <hr />
             <div className="row p-5">
-              <div className="col-12">
-                {currentCity ? (
-                  <AqiHistoryChart city={currentCity} />
-                ) : (
-                  <div className="text-center fw-bold">
-                    Select a city to see it's AQI history
-                  </div>
-                )}
-              </div>
+              {currentCity ? (
+                <AqiHistoryChart city={currentCity} />
+              ) : (
+                <div className="text-center fw-bold">
+                  Select a city to see it's AQI history
+                </div>
+              )}
             </div>
           </>
         )}
