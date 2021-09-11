@@ -1,5 +1,27 @@
 # A Live Air Quality Index Dashboard
 
+A React app which connects to a WebSockets based API (wss://city-ws.herokuapp.com/) to show live air quality index of some Indian cities.
+
+The site is live at https://live-air-quality-index-tracker.netlify.app/
+
+_Tech stack_: TypeScript (for readability & maintainability), React, Redux (for state management), Redux-saga (for async side-effects), a mix of Bootstrap and styled-components for styling, Recharts for charting, moment.js for date-time manipulation.
+
+Recharts was chosen as charting library after studying and comparing several major D3.js based graphing libraries with a component-style API. Recharts is currently the most downloaded charting library for React among its peers with the highest number of GitHub stars and most frequently updated . [See comparison](https://www.npmtrends.com/nivo-vs-recharts-vs-victory)
+
+The _main_ branch is auto-deployed to Netlify using their deployment pipeline.
+
+Development time:
+
+1. Setting up base project - 10 mins
+2. Subscribing to web sockets endpoint - 1 hour
+3. Managing state and other shenanigans - 30 mins
+4. Showing latest AQI in table format - 1 hour
+5. Creating a comparison chart - 1 hour
+6. Showing all previous AQI readings of a city - 30 mins
+7. Refactoring - 30 mins
+8. Build and deploy - 45 mins
+
+<hr>
 <img width="914" alt="React Boilerplate Meets CRA" src="https://user-images.githubusercontent.com/3495307/80274591-2d5daa00-86e4-11ea-8fba-404f1cdba87e.png" align="center">
 <br />
 
