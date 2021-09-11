@@ -44,7 +44,7 @@ export function LiveAqiTable({ cities }: LiveAqiTableProps) {
         {cities.map(city => (
           <ColoredTableRow
             key={city.name}
-            backgroundColor={getAqiStandards(city).toString()}
+            bgColor={getAqiStandards(city).toString()}
             onClick={() => dispatch(actions.setCurrentCityName(city.name))}
           >
             <td>{city.name}</td>
@@ -57,9 +57,13 @@ export function LiveAqiTable({ cities }: LiveAqiTableProps) {
   );
 }
 
-const ColoredTableRow = styled.tr`
+type ColoredTableRowProps = {
+  bgColor: string;
+};
+
+const ColoredTableRow = styled.tr<ColoredTableRowProps>`
   cursor: pointer;
-  background-color: ${({ backgroundColor: color }) =>
+  background-color: ${({ bgColor: color }) =>
     (color === AirQualityStandards.GOOD.toString() && `rgb(0, 176, 80)`) ||
     (color === AirQualityStandards.SATISFACTORY.toString() &&
       `rgb(146, 208, 80)`) ||

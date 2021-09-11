@@ -7,7 +7,7 @@ function websocketInitChannel() {
   return eventChannel(emit => {
     function createNewWebSocketConnection() {
       // Create new socket
-      const socket = new WebSocket('ws://city-ws.herokuapp.com/');
+      const socket = new WebSocket('wss://city-ws.herokuapp.com/');
 
       // Log socket opening
       socket.onopen = () => {
